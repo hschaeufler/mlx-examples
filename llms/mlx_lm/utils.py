@@ -217,12 +217,9 @@ def generate_step(
 
     y, logprobs = _step(y)
 
-    mx.async_eval(y)
     while True:
-        next_y, next_logprobs = _step(y)
-        mx.async_eval(next_y)
         yield y.item(), logprobs
-        y, logprobs = next_y, next_logprobs
+        y, logprobs = _step(y)
 
 
 def stream_generate(

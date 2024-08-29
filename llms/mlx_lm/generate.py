@@ -155,6 +155,7 @@ def main():
         temp=args.temp,
         top_p=args.top_p,
     )
+    mx.synchronize()
 
 
 if __name__ == "__main__":
